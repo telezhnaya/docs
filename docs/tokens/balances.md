@@ -141,3 +141,44 @@ For such kind of transactions, sender pays 2 commissions: for making receipt fro
 Note: we do not have the change.
 For this example, final cost of adding the key was `20300612500000000000 * 2 / 10^24 = 0.000040601225` Near Tokens.
 
+### Deploying the contract
+
+https://explorer.mainnet.near.org/transactions/3DN4XiQCX2EeSN5sjiaB4WBjJizthbhUfqQhCBcZK57A
+
+`ref-finance.near` deployed the contract.
+
+| block height | ref-finance.near amount |
+| - | - |
+| 32378845 | 42166443062029468200000000 |
+| 32378846 | 42165929455413658400000000 |
+
+For such kind of transactions, sender pays 2 commissions: for making receipt from transaction; for executing receipt. 
+
+Note: we do not have the change.
+For this example, final cost of deploying the contract was `256803307904900000000 * 2 / 10^24 = 0.0005136066158098` Near Tokens.
+
+### Receiving the reward for being validator
+
+No transaction/receipt is associated with such type of balance changing.
+
+| block height | alex.poolv1.near locked (stake) | dragonfly.poolv1.near locked (stake) |
+| - | - | - |
+| 32500252 | 4111545093022532827839811724145 | 17566252352580535309320716535651 |
+| 32500253 | 4112206022007876955232669410755 | 17569076119578349310542423894122 |
+
+`alex.poolv1.near` earned 660.9289853441273 tokens, `dragonfly.poolv1.near` earned `2823.766997814001` tokens. This value is calculated based on stake size and number of calculated blocks per epoch. Read more about it [here](https://nomicon.io/Economics/README.html#rewards-calculation)
+
+### TODO
+
+1. `action_kind: STAKE` is the last one in DB in transactions table that we need to analyze
+
+Asked Bowen about that
+
+```
+select * 
+from transactions join transaction_actions on transactions.transaction_hash = transaction_actions.transaction_hash
+where transaction_actions.action_kind NOT IN ('CREATE_ACCOUNT', 'TRANSFER', 'DELETE_ACCOUNT', 'FUNCTION_CALL', 'ADD_KEY', 'DELETE_KEY', 'DEPLOY_CONTRACT')
+order by transactions.block_timestamp desc limit 100; -- 'STAKE'
+```
+
+2. I want more information about rewards, staking/unstaking
