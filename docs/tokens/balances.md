@@ -165,28 +165,43 @@ For this example, final cost of deploying the contract was `25680330790490000000
 
 ### Receiving the reward for being validator
 
-TODO need to make this section again from the beginning
+??? re-check: how the numbers change if the user increase the stake in the middle of epoch
 
-No transaction/receipt is associated with such type of balance changing.
+NB: No transaction/receipt is associated with such type of balance changing.
 
-| block height | alex.poolv1.near locked (stake) | dragonfly.poolv1.near locked (stake) |
+On the boundary of the epochs, validators receive reward. The platform gives 10% of minted tokens to special account `treasury.near`. You could think about `treasury.near` as about reward to the whole system to keep it in working order. Total sum of the rewards (including `treasury.near`) is the increase of total supply in the system.
+
+|  | total supply | treasury.near | comment |
+| - | - | - | - |
+| block 32716252 | 1020253586314335829144818854680815 | 2047777174062240806436499682917 | |
+| block 32716253 | 1020323466696960098722157540903707 | 2054765212324667764170368305209 | |
+| difference | 69880382624269577338686222892 | 6988038262426957733868622292 | treasury received exactly 10% of reward (TODO why 3 yoctotokens appeared?) |
+
+If the validator does not change the stake during the epoch, all the reward will go to their stake. Liquid balance will remain the same. 
+
+| block height | baziliknear.poolv1.near amount | baziliknear.poolv1.near locked (stake) |
 | - | - | - |
-| 32500252 | 4111545093022532827839811724145 | 17566252352580535309320716535651 |
-| 32500253 | 4112206022007876955232669410755 | 17569076119578349310542423894122 |
+| 32716252 | 87645929417382101548688640817 | 4051739369484142981303684413288 |
+| 32716253 | 87645929417382101548688640817 | 4052372556336355400023161624996 |
 
-`alex.poolv1.near` earned 660.9289853441273 tokens, `dragonfly.poolv1.near` earned `2823.766997814001` tokens. This value is calculated based on stake size and number of calculated blocks per epoch. Read more about it [here](https://nomicon.io/Economics/README.html#rewards-calculation)
+`baziliknear.poolv1.near` had 4M tokens on their locked balance. Their reward for the epoch was `633186852212418719477211708 / 10^24 = 633.1868522124187` tokens.
+
+If the validator decrease the stake during the epoch, it will be actually decreased at the boundary between the epochs. The reward will also go to the liquid balance in such case.
+
+| block height | astro-stakers.poolv1.near amount | astro-stakers.poolv1.near locked (stake) | d1.poolv1.near amount | d1.poolv1.near locked (stake) | artemis.poolv1.near amount | artemis.poolv1.near locked (stake) |
+| - | - | - | - | - | - | - |
+| block 32716252 | 75643656264518222662518079298 | 14871875685703104705137979278533 | 39579636061549418675704317463 | 9002215926886116642974675441492 | 195455191635613196116221250 | 3155647821138218410536743286795 |
+| block 32716253 | 77968865959341187332341390150 | 14871875685703104705137979278533 | 40986873900034981089977167653 | 9002215926314400176270075441492 | 3155843276329854023732859508045 | 0 |
+| diff | 2325209694822964669823310852 | 0 | 1407237838485562414272850190 | -571716466704600000000 | 3155647821138218410536743286795 | -3155647821138218410536743286795 |
+
+`astro-stakers.poolv1.near` decided to put the reward to liquid balance, so they invoked a command that "decreased" the stake to the amount of the reward. We can see that the stake does not change between the epochs.
+
+`d1.poolv1.near` decided to slightly decrease the stake size, so the reward and the part of the stake are on the liquid balance.
+
+`artemis.poolv1.near` received the reward and stopped being validator at that epoch, so all the stake are on the liquid balance, stake becomes zero.
+
+The reword value is calculated based on stake size and number of calculated blocks per epoch. Read more about it [here](https://nomicon.io/Economics/README.html#rewards-calculation)
 
 ### TODO
 
-1. `action_kind: STAKE` is the last one in DB in transactions table that we need to analyze
-
-Asked Bowen about that
-
-```
-select * 
-from transactions join transaction_actions on transactions.transaction_hash = transaction_actions.transaction_hash
-where transaction_actions.action_kind NOT IN ('CREATE_ACCOUNT', 'TRANSFER', 'DELETE_ACCOUNT', 'FUNCTION_CALL', 'ADD_KEY', 'DELETE_KEY', 'DEPLOY_CONTRACT')
-order by transactions.block_timestamp desc limit 100; -- 'STAKE'
-```
-
-2. I want more information about rewards, staking/unstaking
+Analyze the process of being a part of the validator's pool.
