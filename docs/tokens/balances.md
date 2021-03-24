@@ -165,8 +165,6 @@ For this example, final cost of deploying the contract was `25680330790490000000
 
 ### Receiving the reward for being validator
 
-??? re-check: how the numbers change if the user increase the stake in the middle of epoch
-
 NB: No transaction/receipt is associated with such type of balance changing.
 
 On the boundary of the epochs, validators receive reward. The platform gives 10% of minted tokens to special account `treasury.near`. You could think about `treasury.near` as about reward to the whole system to keep it in working order. Total sum of the rewards (including `treasury.near`) is the increase of total supply in the system.
@@ -202,6 +200,10 @@ If the validator decrease the stake during the epoch, it will be actually decrea
 
 The reword value is calculated based on stake size and number of calculated blocks per epoch. Read more about it [here](https://nomicon.io/Economics/README.html#rewards-calculation)
 
-### TODO
+If the validator increase the stake during the epoch, stake will be increased in next few blocks, we do not need to wait for the moment of the epoch boundary. For current epoch, blockchain will take into account stake value fixed at the start of the epoch.
 
-Analyze the process of being a part of the validator's pool.
+https://explorer.mainnet.near.org/transactions/HajXjY1gSf47jakXP44ERecjFE2hFvF4FgRyQzNdZzDZ
+
+`elecnodo.near` put 245.7788678019393 tokens from its locked account `57bea511f28a9c0d44148c332826a9b9fb14f13c.lockup.near` to a staking pool `staked.poolv1.near`
+
+Read more about epochs changing [here](https://github.com/near/NEPs/tree/master/specs/BlockchainLayer/EpochManager).
