@@ -17,6 +17,8 @@ All calculation in tables are in yoctonear.
 
 There are different scenarios why the amount of tokens could change on the account. Let's look at it on real examples.
 
+Each example (except rewarding) contains fees user pays for the operation. You could read about fees calculation [here](https://nomicon.io/Economics/README.html#transaction-fees).
+
 ### Transfer of tokens
 
 https://explorer.mainnet.near.org/transactions/6gUVYsdAsStzU5H2AyW7bxAdEL4RvJv5PL3b8DRnPVED
@@ -26,14 +28,14 @@ https://explorer.mainnet.near.org/transactions/6gUVYsdAsStzU5H2AyW7bxAdEL4RvJv5P
 | block height | pine.near amount | taka.near amount | total supply | explanation |
 | - | - | - | - | - |
 | 32786820 | 1997461904089428600000000 | 17799799178272291100000000 | 1020393325841554327182410255742095 | initial state |
-| 32786821 | 355076598029241100000000  | 17799799178272291100000000 | 1020393325841554327182410255742095 | pine.near lost some tokens for transferring and commission (part of commission will be returned) |
-| 32786822 | 355076598029241100000000  | 19442139178272291100000000 | 1020393325841532008926160255742095 | taka.near received exactly 1.64234 tokens. Total supply lost amount of 1 commission for making receipt from transaction |
-| 32786823 | 355077267576928600000000  | 19442139178272291100000000 | 1020393325841509690669910255742095 | Total supply lost amount of 1 commission for executing receipt |
+| 32786821 | 355076598029241100000000  | 17799799178272291100000000 | 1020393325841554327182410255742095 | pine.near lost some tokens for transferring and fees (with a margin, some tokens will be returned) |
+| 32786822 | 355076598029241100000000  | 19442139178272291100000000 | 1020393325841532008926160255742095 | taka.near received exactly 1.64234 tokens. Total supply was deducted for making receipt from transaction |
+| 32786823 | 355077267576928600000000  | 19442139178272291100000000 | 1020393325841509690669910255742095 | Total supply was deducted for executing receipt |
 | 32786824 | 355077267576928600000000  | 19442139178272291100000000 | 1020393325841509690669910255742095 | final state |
 
-For such kind of transactions, sender pays 2 commissions: for making receipt from transaction; for executing receipt. 
+For such kind of transactions, sender pays 2 fees: for making receipt from transaction; for executing receipt. 
 
-We also have receipt for returning a change: it is made without comission.
+We also have receipt for returning a change: it is made without fee.
 
 For this example, final cost of transferring tokens was `22318256250000000000 * 2 / 10^24 = 0.0000446365125` Near Tokens.
 
@@ -46,14 +48,14 @@ https://explorer.mainnet.near.org/transactions/Hant2anxPJHm3sh8ncc5AWn5VpXTmwq6i
 | block height | nearcrowd.near amount | app.nearcrowd.near amount | total supply | explanation |
 | - | - | - | - | - |
 | 32396638 | 117975002547050142700000000 | - | 1019767988635277999737307820909366 | initial state (app.nearcrowd.near does not exist) |
-| 32396639 | 17974916362372455200000000 | - | 1019767988635277999737307820909366 | nearcrowd.near spent tokens on transfer and comissions. Total supply is not changed for now: process is not finished |
-| 32396640 | 17974916362372455200000000 | 100000000000000000000000000 | 1019767988635235544231057820909366 | app.nearcrowd.near was created with initial amount of tokens. Total supply lost 1 commission for making receipt from transaction |
-| 32396641 | 17974917636037642700000000 | 100000000000000000000000000 | 1019767988635193088724807820909366 | nearcrowd.near received a change for commissions. Total supply lost 1 commission for executing receipt |
+| 32396639 | 17974916362372455200000000 | - | 1019767988635277999737307820909366 | nearcrowd.near spent tokens on transfer and fees. Total supply is not changed for now: process is not finished |
+| 32396640 | 17974916362372455200000000 | 100000000000000000000000000 | 1019767988635235544231057820909366 | app.nearcrowd.near was created with initial amount of tokens. Total supply was deducted for making receipt from transaction |
+| 32396641 | 17974917636037642700000000 | 100000000000000000000000000 | 1019767988635193088724807820909366 | nearcrowd.near received a change for commissions. Total supply was deducted for executing receipt |
 | 32396642 | 17974917636037642700000000 | 100000000000000000000000000 | 1019767988635193088724807820909366 | final state |
 
-For such kind of transactions, sender pays 2 commissions: for making receipt from transaction; for executing receipt. 
+For such kind of transactions, sender pays 2 fees: for making receipt from transaction; for executing receipt. 
 
-We also have receipt for returning a change: it is made without comission.
+We also have receipt for returning a change: it is made without fee.
 For this example, final cost of creating account and transferring tokens were `42455506250000000000 * 2 / 10^24 = 0.0000849110125` Near Tokens.
 
 ### Deleting the account
@@ -68,10 +70,10 @@ It's not possible to delete not your account: user is always deleting their own 
 | - | - | - | - | - |
 | 31961454 | 456172376354355113240646 | 719560525627200400000000 | 1019079411898934110106918776083373 | initial state |
 | 31961455 | - | 719560525627200400000000 | 1019079411898934110106918776083373 | wxx.near was deleted |
-| 31961456 | - | 1175681792281555513240646 | 1019079411898883000406918776083373 | vng.near received tokens (minus commission), total supply lost amount of 2 commissions |
+| 31961456 | - | 1175681792281555513240646 | 1019079411898883000406918776083373 | vng.near received tokens (minus commission), total supply was deducted by fees getting burned |
 | 31961457 | - | 1175681792281555513240646 | 1019079411898883000406918776083373 | final state |
 
-For such kind of transactions, sender pays 2 commissions: for making receipt from transaction; for executing receipt. 
+For such kind of transactions, sender pays 2 fees: for making receipt from transaction; for executing receipt. 
 
 Note: we do not have the change.
 For this example, final cost of deleting account was `25554850000000000000 * 2 / 10^24 = 0.0000511097` Near Tokens.
@@ -85,13 +87,13 @@ https://explorer.mainnet.near.org/transactions/8oBZrKk8jkAzrsYasoL2DW9Yg6K2GznLh
 | block height | relayer.bridge.near amount | client.bridge.near amount | total supply | explanation |
 | - | - | - | - | - |
 | 32451005 | 927695372457390994900000000 | 1018709186646522709500000000 | 1019836940956022237114094657887001 | initial state |
-| 32451006 | 927676238135400182753029324 | 1018709186646522709500000000 | 1019836940956022237114094657887001 | the function is invoked, commission is gone |
-| 32451007 | 927676238135400182753029324 | 1018710176966066945800000000 | 1019836940955771421812122457887001 | author of the function gets the reward. Total supply lost commission for making receipt from transaction |
-| 32451008 | 927691569761639596000000000 | 1018710176966066945800000000 | 1019836940953209860906932057887001 | relayer.bridge.near received a change for commissions. Total supply lost commission for executing receipt |
+| 32451006 | 927676238135400182753029324 | 1018709186646522709500000000 | 1019836940956022237114094657887001 | the function is invoked, relayer.bridge.near spent the tokens on the fees (with a margin) |
+| 32451007 | 927676238135400182753029324 | 1018710176966066945800000000 | 1019836940955771421812122457887001 | author of the function gets the reward. Total supply was deducted for making receipt from transaction |
+| 32451008 | 927691569761639596000000000 | 1018710176966066945800000000 | 1019836940953209860906932057887001 | relayer.bridge.near received a change for fees. Total supply was deducted for executing receipt |
 | 32451009 | 927691569761639596000000000 | 1018710176966066945800000000 | 1019836940953209860906932057887001 | final state |
 
-For such kind of transactions, sender pays 2 commissions: for making receipt from transaction; for executing receipt. 
-Receiver gets part of the commission as a reward for a possibility to invoke their function.
+For such kind of transactions, sender pays 2 fees: for making receipt from transaction; for executing receipt. 
+Receiver gets part of the fee as a reward for a possibility to invoke their function.
 
 For this example, final cost of invoking the function was `(250815301972200000000 + 3551880449426700000000) / 10^24 = 0.0038026957513989` Near Tokens.
 Reward was `0.0009903195442363` Near Tokens.
@@ -118,11 +120,11 @@ https://explorer.mainnet.near.org/transactions/A9767GbmRCLdeCpZYfKTQUqe17KyAu5Jr
 | block height | slavon.near amount | total supply | explanation |
 | - | - | - | - |
 | 32452281 | 4110095852838015413724607 | 1019836940258537920949718457887001 | initial state |
-| 32452282 | 4110053774694109613724607 | 1019836940258537920949718457887001 | commissions are gone |
-| 32452283 | 4110053774694109613724607 | 1019836940258495842805812657887001 | total supply lost the amount of 2 commissions |
+| 32452282 | 4110053774694109613724607 | 1019836940258537920949718457887001 | fees are gone |
+| 32452283 | 4110053774694109613724607 | 1019836940258495842805812657887001 | total supply was deducted |
 | 32452284 | 4110053774694109613724607 | 1019836940258495842805812657887001 | final state |
 
-For such kind of transactions, sender pays 2 commissions: for making receipt from transaction; for executing receipt. 
+For such kind of transactions, sender pays 2 fees: for making receipt from transaction; for executing receipt. 
 
 Note: we do not have the change.
 For this example, final cost of adding the key was `21039071952900000000 * 2 / 10^24 = 0.0000420781439058` Near Tokens.
@@ -136,11 +138,11 @@ https://explorer.mainnet.near.org/transactions/CfuXcVPy7vZNVabYKzemSwDdNF9fnhbML
 | block height | 77yen.near amount | total supply | explanation |
 | - | - | - | - |
 | 32429428 | 350892032360972200000000 | 1019836950055687104230777157887001 | initial state |
-| 32429429 | 350851431135972200000000 | 1019836950055687104230777157887001 | commissions are gone |
-| 32429430 | 350851431135972200000000 | 1019836950055646503005777157887001 | total supply lost the amount of 2 commissions |
+| 32429429 | 350851431135972200000000 | 1019836950055687104230777157887001 | fees are gone |
+| 32429430 | 350851431135972200000000 | 1019836950055646503005777157887001 | total supply was deducted |
 | 32429431 | 350851431135972200000000 | 1019836950055646503005777157887001 | final state |
 
-For such kind of transactions, sender pays 2 commissions: for making receipt from transaction; for executing receipt. 
+For such kind of transactions, sender pays 2 fees: for making receipt from transaction; for executing receipt. 
 
 Note: we do not have the change.
 For this example, final cost of adding the key was `20300612500000000000 * 2 / 10^24 = 0.000040601225` Near Tokens.
@@ -154,11 +156,11 @@ https://explorer.mainnet.near.org/transactions/3DN4XiQCX2EeSN5sjiaB4WBjJizthbhUf
 | block height | ref-finance.near amount | total supply | explanation |
 | - | - | - | - |
 | 32378845 | 42166443062029468200000000 | 1019767995481527182962669020909366 | initial state |
-| 32378846 | 42165929455413658400000000 | 1019767995481527182962669020909366 | commissions are gone |
-| 32378847 | 42165929455413658400000000 | 1019767995481013576346859220909366 | total supply lost the amount of 2 commissions |
+| 32378846 | 42165929455413658400000000 | 1019767995481527182962669020909366 | fees are gone |
+| 32378847 | 42165929455413658400000000 | 1019767995481013576346859220909366 | total supply was deducted |
 | 32378848 | 42165929455413658400000000 | 1019767995481013576346859220909366 | final state |
 
-For such kind of transactions, sender pays 2 commissions: for making receipt from transaction; for executing receipt. 
+For such kind of transactions, sender pays 2 fees: for making receipt from transaction; for executing receipt. 
 
 Note: we do not have the change.
 For this example, final cost of deploying the contract was `256803307904900000000 * 2 / 10^24 = 0.0005136066158098` Near Tokens.
@@ -173,7 +175,7 @@ On the boundary of the epochs, validators receive reward. The platform gives 10%
 | - | - | - | - |
 | block 32716252 | 1020253586314335829144818854680815 | 2047777174062240806436499682917 | |
 | block 32716253 | 1020323466696960098722157540903707 | 2054765212324667764170368305209 | |
-| difference | 69880382624269577338686222892 | 6988038262426957733868622292 | treasury received exactly 10% of reward (TODO why 3 yoctotokens appeared?) |
+| difference | 69880382624269577338686222892 | 6988038262426957733868622292 | treasury received 10% of reward |
 
 If the validator does not change the stake during the epoch, all the reward will go to their stake. Liquid balance will remain the same. 
 
@@ -192,7 +194,7 @@ If the validator decrease the stake during the epoch, it will be actually decrea
 | block 32716253 | 77968865959341187332341390150 | 14871875685703104705137979278533 | 40986873900034981089977167653 | 9002215926314400176270075441492 | 3155843276329854023732859508045 | 0 |
 | diff | 2325209694822964669823310852 | 0 | 1407237838485562414272850190 | -571716466704600000000 | 3155647821138218410536743286795 | -3155647821138218410536743286795 |
 
-`astro-stakers.poolv1.near` decided to put the reward to liquid balance, so they invoked a command that "decreased" the stake to the amount of the reward. We can see that the stake does not change between the epochs.
+`astro-stakers.poolv1.near` decided to put the reward to liquid balance, so they invoked a command (e.g. `ping`). We can see that the stake does not change between the epochs.
 
 `d1.poolv1.near` decided to slightly decrease the stake size, so the reward and the part of the stake are on the liquid balance.
 
