@@ -30,7 +30,7 @@ https://explorer.mainnet.near.org/transactions/6gUVYsdAsStzU5H2AyW7bxAdEL4RvJv5P
 | 32786820 | 1997461904089428600000000 | 17799799178272291100000000 | 1020393325841554327182410255742095 | initial state |
 | 32786821 | 355076598029241100000000  | 17799799178272291100000000 | 1020393325841554327182410255742095 | pine.near lost some tokens for transferring and fees (with a margin, some tokens will be returned) |
 | 32786822 | 355076598029241100000000  | 19442139178272291100000000 | 1020393325841532008926160255742095 | taka.near received exactly 1.64234 tokens. Total supply was deducted for making receipt from transaction |
-| 32786823 | 355077267576928600000000  | 19442139178272291100000000 | 1020393325841509690669910255742095 | Total supply was deducted for executing receipt |
+| 32786823 | 355077267576928600000000  | 19442139178272291100000000 | 1020393325841509690669910255742095 | pine.near received a change. Total supply was deducted for executing receipt |
 | 32786824 | 355077267576928600000000  | 19442139178272291100000000 | 1020393325841509690669910255742095 | final state |
 
 For such kind of transactions, sender pays 2 fees: for making receipt from transaction; for executing receipt. 
@@ -48,9 +48,9 @@ https://explorer.mainnet.near.org/transactions/Hant2anxPJHm3sh8ncc5AWn5VpXTmwq6i
 | block height | nearcrowd.near amount | app.nearcrowd.near amount | total supply | explanation |
 | - | - | - | - | - |
 | 32396638 | 117975002547050142700000000 | - | 1019767988635277999737307820909366 | initial state (app.nearcrowd.near does not exist) |
-| 32396639 | 17974916362372455200000000 | - | 1019767988635277999737307820909366 | nearcrowd.near spent tokens on transfer and fees. Total supply is not changed for now: process is not finished |
+| 32396639 | 17974916362372455200000000 | - | 1019767988635277999737307820909366 | nearcrowd.near spent tokens on transfer and fees (with a margin, some tokens will be returned). Total supply is not changed for now: process is not finished |
 | 32396640 | 17974916362372455200000000 | 100000000000000000000000000 | 1019767988635235544231057820909366 | app.nearcrowd.near was created with initial amount of tokens. Total supply was deducted for making receipt from transaction |
-| 32396641 | 17974917636037642700000000 | 100000000000000000000000000 | 1019767988635193088724807820909366 | nearcrowd.near received a change for commissions. Total supply was deducted for executing receipt |
+| 32396641 | 17974917636037642700000000 | 100000000000000000000000000 | 1019767988635193088724807820909366 | nearcrowd.near received a change. Total supply was deducted for executing receipt |
 | 32396642 | 17974917636037642700000000 | 100000000000000000000000000 | 1019767988635193088724807820909366 | final state |
 
 For such kind of transactions, sender pays 2 fees: for making receipt from transaction; for executing receipt. 
@@ -70,7 +70,7 @@ It's not possible to delete not your account: user is always deleting their own 
 | - | - | - | - | - |
 | 31961454 | 456172376354355113240646 | 719560525627200400000000 | 1019079411898934110106918776083373 | initial state |
 | 31961455 | - | 719560525627200400000000 | 1019079411898934110106918776083373 | wxx.near was deleted |
-| 31961456 | - | 1175681792281555513240646 | 1019079411898883000406918776083373 | vng.near received tokens (minus commission), total supply was deducted by fees getting burned |
+| 31961456 | - | 1175681792281555513240646 | 1019079411898883000406918776083373 | vng.near received tokens (minus fee), total supply was deducted by fees getting burned |
 | 31961457 | - | 1175681792281555513240646 | 1019079411898883000406918776083373 | final state |
 
 For such kind of transactions, sender pays 2 fees: for making receipt from transaction; for executing receipt. 
