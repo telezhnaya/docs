@@ -13,6 +13,8 @@ Body:
 Every [account](https://docs.near.org/docs/develop/front-end/rpc#view-account) has liquid balance (called `amount`) and stake (called `locked`).
 All calculation in tables are in yoctonear. 
 
+Total supply is the amount of tokens in the whole system. Each example is selected at the moment when no other changes is performed in the blockchain, so the only example could affect total supply.
+
 ## Why does my balance change?
 
 There are different scenarios why the amount of tokens could change on the account. Let's look at it on real examples.
