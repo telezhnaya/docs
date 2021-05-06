@@ -7,7 +7,7 @@ Read more about it [here](https://github.com/telezhnaya/core-contracts/tree/mast
 
 `start`, `cliff`, `end` are the variables from [`vesting_schedule`](https://github.com/telezhnaya/core-contracts/blob/master/lockup/src/lib.rs#L188) from initializing lockup function (they are `start_date`, `cliff_date`, `end_date` there).
 
-Here and in all graphs: X is the time, Y is the amount of unlocked tokens.
+Here and in all graphs: X is the time, Y is the number of unlocked tokens.
 
 ### Lockup
 <img width="704" alt="Screenshot 2021-05-05 at 22 34 36" src="https://user-images.githubusercontent.com/11246099/117198787-1d49d180-adf2-11eb-86f3-047152e54877.png">
@@ -16,7 +16,7 @@ Here and in all graphs: X is the time, Y is the amount of unlocked tokens.
 
 `lockup_timestamp` is the start of the lockup.
 
-`lockup_duration` is the interval between Phase 2 launch (October 14th) and the start of the lockup.
+`lockup_duration` is the interval between the Phase 2 launch (October 14th) and the start of the lockup.
 
 Is it true that we could have only one variable for that? **Yes.**
 
@@ -34,10 +34,10 @@ Main conclusion: the resulting graph of unlocking the tokens is always the minim
 
 ### Termination
 
-Please ignore thin lines made by pencil. I finished school long time ago, and I have no kids, so it's not allowed to have the rubber in my house.
+Please ignore the thin lines made by the pencil. I finished school a long time ago, and I have no kids, so it's not allowed to have the rubber in my house.
 
 <img width="1180" alt="Screenshot 2021-05-05 at 22 47 41" src="https://user-images.githubusercontent.com/11246099/117200230-ec6a9c00-adf3-11eb-93da-6841990db910.png">
 
-Vesting could be terminated. Vesting could also start before Phase 2 launch.
+Vesting could be terminated. Vesting could also start before the Phase 2 launch.
 
-At the moment of termination, we fix the amount of tokens that should be finally unlocked at the end. We continue to unlock the tokens as we normally do that by getting the minimum between lockup and vesting graph. We stop when we reach the desired amount of tokens.
+At the moment of termination, we fix the number of tokens that should be finally unlocked at the end. We continue to unlock the tokens as we normally do that by getting the minimum between lockup and vesting graph. We stop when we reach the desired amount of tokens.
