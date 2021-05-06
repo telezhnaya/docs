@@ -100,6 +100,8 @@ Receiver gets part of the fee as a reward for a possibility to invoke their func
 For this example, final cost of invoking the function was `(250815301972200000000 + 3551880449426700000000) / 10^24 = 0.0038026957513989` Near Tokens.
 Reward was `0.0009903195442363` Near Tokens.
 
+TODO: add Nomicon link about royalties when [this issue](https://github.com/near/NEPs/issues/198) will be resolved.
+
 #### The example of calling a function could be more complex.
 
 https://explorer.mainnet.near.org/transactions/DuGWWTK2sAxjffifJiJBv6hs3Hc8MdhpHnzgRJryV4Be
