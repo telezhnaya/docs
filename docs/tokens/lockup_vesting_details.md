@@ -10,7 +10,9 @@ Read more about it [here](https://github.com/telezhnaya/core-contracts/tree/mast
 Here and in all graphs: X is the time, Y is the number of unlocked tokens.
 
 ### Lockup
-<img width="704" alt="Screenshot 2021-05-05 at 22 34 36" src="https://user-images.githubusercontent.com/11246099/117198787-1d49d180-adf2-11eb-86f3-047152e54877.png">
+<img width="563" alt="Screenshot 2021-05-07 at 14 21 34" src="https://user-images.githubusercontent.com/11246099/117442575-a28ecc80-af3f-11eb-8304-01ce5f2eaa5c.png">
+Apart of lockup timestamp, we could have lockup duration.
+<img width="650" alt="Screenshot 2021-05-07 at 14 21 51" src="https://user-images.githubusercontent.com/11246099/117442685-c6521280-af3f-11eb-82c5-2f12c2f36975.png">
 
 `lockup_timestamp`, `lockup_duration`, `release_duration` are also the [initializing parameters](https://github.com/telezhnaya/core-contracts/blob/master/lockup/src/lib.rs#L183) (names are exactly same there).
 
